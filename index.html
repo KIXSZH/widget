@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:widget="http://www.netvibes.com/ns/">
+
+<head>
+    <title>Dynamic Widget UI</title>
+    <meta name="description" content="Dynamic UI Widget with conditional fields" />
+    <meta name="keywords" content="3DEXPERIENCE, widget, UI, radio, dropdown" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="apiVersion" content="1.0" />
+    <meta name="debugMode" content="true" />
+    <meta name="strictMode" content="false" />
+
+    <widget:preferences></widget:preferences>
+
+    <script type="text/javascript" src="./scripts/WidgetDynamicUI.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #0078D4;
+        }
+
+        .field-group {
+            margin: 12px 0;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            margin-top: 4px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        button {
+            padding: 6px 16px;
+            font-size: 14px;
+            margin-right: 8px;
+            margin-top: 10px;
+            background-color: #0078D4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005EA6;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Dynamic UI Widget</h2>
+    <div id="widgetContent">
+        <div class="field-group">
+            <label><input type="radio" name="yesno" value="yes" /> Yes</label>
+            <label><input type="radio" name="yesno" value="no" /> No</label>
+        </div>
+
+        <div class="field-group" id="dropdownContainer" style="display:none;">
+            <select id="testOptions">
+                <option value="">-- Select --</option>
+                <option value="test1">Test 1</option>
+                <option value="test2">Test 2</option>
+                <option value="test3">Test 3</option>
+            </select>
+        </div>
+
+        <div id="dynamicFields"></div>
+    </div>
+</body>
+
+<script type="text/javascript">
+require(["MyCompany/WidgetDynamicUI"], function (WidgetDynamicUI) {
+    if (typeof widget !== "undefined") {
+        WidgetDynamicUI.init(widget);
+    } else {
+        console.warn("widget object is undefined – running locally?");
+        WidgetDynamicUI.init({ addEvent: () => {} }); // Safe fallback
+    }
+});
+</script>
+
+</html>
